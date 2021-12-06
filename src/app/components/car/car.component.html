@@ -9,13 +9,16 @@
             <th>Açıklama</th>
         </tr>
     </thead>
-    <tr *ngFor="let car of cars">
-        <td>{{car.carId}}</td>
-        <td>{{car.brandName}}</td>
-        <td>{{car.colorName}}</td>
-        <td>{{car.modelYear}}</td>
-        <td>{{car.dailyPrice}}</td>
-        <td>{{car.description}}</td>
-    </tr>
+    <tbody *ngFor="let car of cars">
+        <tr class="clickable" routerLink="/cars/cardetail/{{car.carId}}">
+            <th >{{car.carId}}</th>
+            <td>{{car.brandName}}</td>
+            <td>{{car.colorName}}</td>
+            <td>{{car.modelYear}}</td>
+            <td>{{car.dailyPrice}}</td>
+            <td>{{car.description}}</td>
+        </tr>
+    </tbody>
+    
 </table>
 
