@@ -1,14 +1,22 @@
+
+
 <div class="row">
     <div class="col-md-8">
         <app-car-image></app-car-image>
     </div>
     <div class="col-md-4">
-        <ul *ngFor="let carDetail of carDetails" class="list-group">
-            <li class="list-group-item"> <b>Brand Name:</b> {{ carDetail.brandName }}</li>
-            <li class="list-group-item"> <b>Color Name:</b> {{ carDetail.colorName }}</li>
-            <li class="list-group-item"> <b>Model Year:</b> {{ carDetail.modelYear }}</li>
-            <li class="list-group-item"> <b>Daily Price:</b> {{ carDetail.dailyPrice }}</li>
-            <li class="list-group-item"> <b>Description:</b> {{ carDetail.description }}</li>
+        <ul *ngFor="let carDetail of carDetails " class="list-group">
+            <li class="list-group-item"> <b>Marka :</b> {{ carDetail.brandName }}</li>
+            <li class="list-group-item"> <b>Renk :</b> {{ carDetail.colorName }}</li>
+            <li class="list-group-item"> <b>Model Yılı :</b> {{ carDetail.modelYear }}</li>
+            <li class="list-group-item"> <b>Günlük Fiyat :</b> {{ carDetail.dailyPrice }}</li>
+            <li class="list-group-item"> <b>Açıklama :</b> {{ carDetail.description }}</li>
+                
+            <li class="list-group-item">  
+                <app-car-rental></app-car-rental>
+            </li>
         </ul>
+        
     </div>
+    
 </div>

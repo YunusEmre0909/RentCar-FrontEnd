@@ -1,3 +1,16 @@
+
+ <div class="mb-3">
+    <label for="filterText" class="form-label">Araba Ara</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" 
+    placeholder="Marka Model Giriniz">
+  </div>
+
+  <div *ngIf="filterText" class="alert alert-primary">
+    {{filterText}} aradınız.
+  </div>
+  
+ <app-car-filter></app-car-filter>
+
 <table  class="table">
     <thead>
         <tr>
@@ -9,14 +22,14 @@
             <th>Açıklama</th>
         </tr>
     </thead>
-    <tbody *ngFor="let car of cars">
-        <tr class="clickable" routerLink="/cars/cardetail/{{car.carId}}">
-            <th >{{car.carId}}</th>
-            <td>{{car.brandName}}</td>
-            <td>{{car.colorName}}</td>
-            <td>{{car.modelYear}}</td>
-            <td>{{car.dailyPrice}}</td>
-            <td>{{car.description}}</td>
+    <tbody *ngFor="let carDetail of carDetails| filterPipe:filterText ">
+        <tr class="clickable" routerLink="/cars/cardetail/{{carDetail.carId}}">
+            <th >{{carDetail.carId}}</th>
+            <td>{{carDetail.brandName}}</td>
+            <td>{{carDetail.colorName}}</td>
+            <td>{{carDetail.modelYear}}</td>
+            <td>{{carDetail.dailyPrice}}</td>
+            <td>{{carDetail.description}}</td>
         </tr>
     </tbody>
     

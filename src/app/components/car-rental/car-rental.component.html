@@ -1,0 +1,139 @@
+
+<button type="button" class="btn btn-outline-dark float-end" data-bs-toggle="modal"
+data-bs-target="#exampleModalToggle">
+Kirala
+<i class="bi-wallet" style="font-size: 1rem; color: rgb(5, 5, 5)"></i>
+</button>
+
+
+<div class="modal fade" id="exampleModalToggle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Kirala</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <label for="currentDate" class="form-label">
+                <h1 class="display-6">Bugün ki Tarih</h1>
+            </label>
+            <input type="text" [(ngModel)]="currentDate" class="form-control" id="currentDate"
+                placeholder="enter a search expression" />
+            <label for="returnDate" class="form-label">
+                <h1 class="display-6">Kiralama Tarihi</h1>
+            </label>
+            <input type="text" [(ngModel)]="returnDate" class="form-control" id="returnDate"
+                placeholder="enter a search expression" />
+        </div>
+        <div class="modal-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div *ngIf="isCarAvaliable == false" class="alert alert-danger" role="alert">
+                            {{ messageToDisplay }}
+                        </div>
+                        <div *ngIf="isCarAvaliable == true" class="alert alert-info" role="alert">
+                            {{ messageToDisplay }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10">
+                        <div class="btn-group float-start" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Kapat
+                            </button>
+
+                            <button (click)="checkIfCarIsAvaliable(carId, currentDate, returnDate)" type="button"
+                                class="btn btn-warning">
+                                Arabanın Müsait Olduğunu Kontrol Edin
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <button [class]="getCurrentClassOfPayButton()" data-bs-target="#exampleModalToggle2"
+                            data-bs-toggle="modal">
+                            Ödeme
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+tabindex="-1">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalToggleLabel2">
+                Ödeme Bilgileri
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="paymentForm">
+                <div>
+                    <div class="row">
+                        <div class="col-8">
+                            <label for="cardNumber" class="form-label">Kredi Kartı Numarası</label>
+                            <input id="cardNumber" type="text" class="form-control" placeholder="Kart Numarasını Giriniz."
+                                formControlName="cardNumber">
+                        </div>
+                        <div class="col-4">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input id="cvv" type="text" class="form-control" placeholder="CVV Giriniz" formControlName="cvv">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="nameOnCard" class="form-label">Karttaki isim</label>
+                            <input id="nameOnCard" type="text" class="form-control" placeholder="Karttaki ismi giriniz"
+                                formControlName="nameOnCard">
+                        </div>
+                        <div class="col-3">
+                            <label for="expirationMonth" class="form-label">Ay</label>
+                            <select id="expirationMonth" formControlName="expirationMonth" class="form-select">
+                                <option *ngFor="let month of months">{{month}}</option>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <label for="expirationYear" class="form-label">Yıl</label>
+                            <select id="expirationYear" formControlName="expirationYear" class="form-select">
+                                <option *ngFor="let year of years">{{year}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check float-start">
+                            <input [(ngModel)]="isSaveCardChecked" class="form-check-input" type="checkbox"
+                                value="true" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Kartı kaydet
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="btn-group float-end" role="group" aria-label="Basic example">
+                            <button class="btn btn-secondary" data-bs-target="#exampleModalToggle"
+                                data-bs-toggle="modal">
+                                Geri
+                            </button>
+                            <button (click)="pay()" class="btn btn-primary" data-bs-dismiss="modal">Ödemeyi Tamamla</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
