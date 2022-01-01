@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CarDetail } from 'src/app/models/carDetail';
 import { CarService } from 'src/app/services/car.service';
 
@@ -14,7 +14,7 @@ export class CarDetailComponent implements OnInit {
   carId:number
 
 
-  constructor(private carService:CarService,private activatedRoute:ActivatedRoute) { }
+  constructor(private carService:CarService,private activatedRoute:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
@@ -30,6 +30,9 @@ export class CarDetailComponent implements OnInit {
       this.carDetails=response.data
     })
 
+  }
+  setCurrentRoute(){
+    this.router.navigateByUrl("cars/update")
   }
 
 }
